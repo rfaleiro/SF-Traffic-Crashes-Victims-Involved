@@ -1,0 +1,15 @@
+--- Spatial Exposure Setup ---
+SF Total Land Area: 121.40 sq km
+Muni Metro 50m Zone Area: 4.97 sq km
+Muni Metro Zone % of SF: 4.10%
+
+--- Crash Densities ---
+Crashes near Muni Metro: 47 (13.39%)
+Density near Muni Metro: 9.45 crashes / sq km
+Density elsewhere: 2.61 crashes / sq km
+Relative Risk: 3.62x
+
+--- Statistical Significance ---
+Expected crashes (if random): 14.37
+P-value: 1.61e-12
+Conclusion: Fatal crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
