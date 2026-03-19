@@ -1,0 +1,4 @@
+Total crashes with known party age : 79,874
+Crashes involving party >= 70     : 4,355 (5.45%)
+Relative Risk                      : 0.46x (95% CI: 0.44-0.47)
+P-value                            : < 0.0001
