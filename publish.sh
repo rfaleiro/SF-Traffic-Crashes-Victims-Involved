@@ -9,13 +9,13 @@ STATS_FILE="$OUTPUT_DIR/stats_results.txt"
 mkdir -p "$OUTPUT_DIR"
 
 echo "🚗 Generating Muni Metro Fatal Crashes Map..."
-python analyze_and_map.py
+python3 analyze_and_map.py
 
 echo "🚑 Generating Muni Metro Injury Crashes Map..."
-python analyze_injuries.py
+python3 analyze_injuries.py
 
 echo "📊 Running Statistical Analysis and saving to $STATS_FILE..."
-python stats_analysis.py > "$STATS_FILE"
+python3 stats_analysis.py > "$STATS_FILE"
 echo "Done! Stats summary available at $STATS_FILE"
 
 echo "🌐 Publishing changes to GitHub..."
