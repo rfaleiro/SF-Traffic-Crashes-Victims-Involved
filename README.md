@@ -1,6 +1,6 @@
 # SF Traffic Crashes: Victims Involved near Muni Metro Lines
 
-This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** tram public transit lines in San Francisco, California.
+This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** train public transit lines in San Francisco, California.
 
 By employing a geographic buffer of **50 meters** around the tram network, this analysis maps out specific incidents and runs statistical hypothesis tests (Binomial Tests) to determine if severe crashes disproportionally occur in proximity to these specific transit corridors.
 
@@ -22,6 +22,7 @@ The objective is to accurately measure **Spatial Exposure** by computing the `m�
 * **P-Value & Significance:** The Binomial test returns an infinitesimally small P-value (e.g., `< 0.05`), thereby giving overwhelming mathematical proof to reject the null hypothesis. Crashes are definitively highly concentrated around Muni lines rather than dispersed randomly across the city!
 
 ### 📈 Direct Results (Within a 50-meter buffer)
+
 *The Muni Metro 50m proximity zone makes up roughly **4.10%** of San Francisco's total land area.*
 
 | Dataset | Total SF Crashes | Near Muni (<50m) | Relative Risk | 95% CI | P-Value | Significant? |
@@ -68,7 +69,8 @@ Conclusion                : Injury Crashes are STATISTICALLY SIGNIFICANTLY conce
 
 All datasets used in this geospatial analysis are provided by **DataSF**, the official open data portal for the City and County of San Francisco.
 
-### 📅 Time Span Covered:
+### 📅 Time Span Covered
+
 * **Fatal Crashes:** January 2014 — December 2025
 * **Injury Crashes:** January 2024 — December 2025
 
