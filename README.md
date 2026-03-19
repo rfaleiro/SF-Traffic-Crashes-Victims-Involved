@@ -21,6 +21,14 @@ The objective is to accurately measure **Spatial Exposure** by computing the `m�
 * **The Findings:** Out of practically all datasets mapped, a massive amount of crashes happened within 50 meters of a Muni line, leading to an extremely high Relative Risk multiplier.
 * **P-Value & Significance:** The Binomial test returns an infinitesimally small P-value (e.g., `< 0.05`), thereby giving overwhelming mathematical proof to reject the null hypothesis. Crashes are definitively highly concentrated around Muni lines rather than dispersed randomly across the city!
 
+### 📈 Direct Results (Within a 50-meter buffer)
+*The Muni Metro 50m proximity zone makes up roughly **4.10%** of San Francisco's total land area.*
+
+| Dataset | Total SF Crashes | Near Muni (<50m) | Relative Risk | 95% CI | P-Value | Significant? |
+|---|---|---|---|---|---|---|
+| **Fatalities** | 351 | 47 *(13.39%)* | **3.62x** | 2.04 — 6.41 | `< 0.0001` | ✅ YES |
+| **Injuries** | 5,914 | 771 *(13.04%)* | **3.51x** | 3.05 — 4.04 | `< 0.0001` | ✅ YES |
+
 👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
 
 ## 📂 Official Data Sources
