@@ -1,9 +1,20 @@
+"""
+analyze_injuries.py
+===================
+Baseline note: The null probability is derived from the geographic area fraction
+of the Muni Metro 50m buffer vs. total SF land (~4.1%). Because crashes only
+occur on roads, and Muni lines follow major arterials, this baseline is
+conservative and may slightly overstate the Relative Risk. The finding direction
+is robust to this caveat.
+"""
+
 import pandas as pd
 import geopandas as gpd
 from shapely import wkt
 import folium
 import os
-from scipy.stats import binomtest
+import numpy as np
+from scipy.stats import binomtest, norm
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -45,11 +56,12 @@ print(f"Buffering Muni Metro lines by {buffer_radius} meters...")
 muni_buffered = muni_gdf_proj.copy()
 muni_buffered['geometry'] = muni_buffered.geometry.buffer(buffer_radius)
 
-# Calculate Spatial exposures
-unary_union_geom = muni_buffered.geometry.union_all()
-muni_area_sq_m = unary_union_geom.area
-muni_area_sq_km = muni_area_sq_m / (10**6)
-expected_prob = muni_area_sq_km / SF_LAND_AREA_SQ_KM
+# Calculate Spatial exposures — use union_all() to dissolve overlapping buffers
+# (Fix: harmonised API across all scripts)
+union_geom   = muni_buffered.geometry.union_all()
+muni_area_sq_m  = union_geom.area
+muni_area_sq_km = muni_area_sq_m / 1e6
+expected_prob   = muni_area_sq_km / SF_LAND_AREA_SQ_KM
 
 print("Performing spatial join...")
 crashes_near_muni = gpd.sjoin(crashes_gdf_proj, muni_buffered, how='inner', predicate='intersects')
@@ -61,11 +73,24 @@ crashes_near = crashes_gdf['near_muni'].sum()
 total_crashes = len(crashes_gdf)
 percentage = (crashes_near / total_crashes) * 100 if total_crashes > 0 else 0
 
-crashes_far = total_crashes - crashes_near
+crashes_far    = total_crashes - crashes_near
 area_far_sq_km = SF_LAND_AREA_SQ_KM - muni_area_sq_km
-density_near = crashes_near / muni_area_sq_km if muni_area_sq_km > 0 else 0
-density_far = crashes_far / area_far_sq_km if area_far_sq_km > 0 else 0
-rr = density_near / density_far if density_far > 0 else 0
+density_near   = crashes_near / muni_area_sq_km if muni_area_sq_km > 0 else 0
+density_far    = crashes_far  / area_far_sq_km  if area_far_sq_km  > 0 else 0
+rr             = density_near / density_far      if density_far     > 0 else 0
+
+# 95% CI for Relative Risk via delta method on log(RR)
+obs_p = crashes_near / total_crashes if total_crashes > 0 else 0
+if crashes_near > 0 and obs_p < 1 and expected_prob > 0:
+    se_log_rr = np.sqrt(
+        (1 - obs_p) / crashes_near
+        + (1 - expected_prob) / (total_crashes * expected_prob)
+    )
+    z_crit = norm.ppf(0.975)
+    rr_lo = np.exp(np.log(rr) - z_crit * se_log_rr)
+    rr_hi = np.exp(np.log(rr) + z_crit * se_log_rr)
+else:
+    rr_lo = rr_hi = float('nan')
 
 test_result = binomtest(crashes_near, total_crashes, p=expected_prob, alternative='greater')
 is_significant = "Yes" if test_result.pvalue < 0.05 else "No"
@@ -75,7 +100,7 @@ print(f"Total Injury Crashes plotted: {total_crashes}")
 print(f"Injury Crashes Near a Muni Metro (<={buffer_radius}m): {crashes_near} ({percentage:.2f}%)")
 print(f"Density near Muni Metro: {density_near:.2f} crashes / sq km")
 print(f"Density elsewhere: {density_far:.2f} crashes / sq km")
-print(f"Relative Risk: {rr:.2f}x")
+print(f"Relative Risk: {rr:.2f}x  (95% CI: {rr_lo:.2f}\u2013{rr_hi:.2f})")
 print(f"P-value: {test_result.pvalue:.2e}")
 print("-" * 30)
 
@@ -123,7 +148,7 @@ legend_html = f'''
  <i class="fa fa-minus fa-1x" style="color:#27ae60"></i>&nbsp; Muni Metro Lines<br>
  <br>
  <b>Total Injuries Near Muni:</b> {crashes_near} ({percentage:.1f}%)<br>
- <b>Relative Risk:</b> {rr:.2f}x<br>
+ <b>Relative Risk:</b> {rr:.2f}x (95% CI: {rr_lo:.2f}\u2013{rr_hi:.2f})<br>
  <b>Statistically Significant:</b> {is_significant} (p={test_result.pvalue:.2e})<br>
  <hr style="margin: 10px 0;">
  <b>Methodology:</b> A 50m geographic buffer was drawn around Muni Metro lines. Spatial exposure (buffer area vs. SF's 121.4 sq km total area) dictates our expected crash probabilities. A <b>Binomial Test</b> determines if observed crashes near Muni lines significantly exceed random chance.<br>

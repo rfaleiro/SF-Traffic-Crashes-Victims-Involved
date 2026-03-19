@@ -20,12 +20,14 @@ echo "Done! Stats summary available at $STATS_FILE"
 
 echo "🌐 Publishing changes to GitHub..."
 
-# Add generation outputs
+# Add generation outputs and codebase
 git add Muni_Metro_Fatal_Crashes.html
 git add Muni_Metro_Injury_Crashes.html
 git add "$STATS_FILE"
 git add README.md
 git add requirements.txt
+git add *.py
+git add publish.sh
 
 # Commit and Push
 git commit -m "chore: auto-update maps and statistics via publish.sh"
