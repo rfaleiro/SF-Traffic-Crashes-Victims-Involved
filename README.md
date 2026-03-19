@@ -17,6 +17,12 @@ The objective is to accurately measure **Spatial Exposure** by computing the `m�
 
 👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
 
+## 📂 Official Data Sources
+All datasets used in this geospatial analysis are provided by **DataSF**, the official open data portal for the City and County of San Francisco:
+*   [**Traffic Crashes Resulting in Injury**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury-Victims-Involv/nwes-mmgh/about_data) 
+*   [**Traffic Crashes Resulting in Fatality**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Fatality/dau3-4s8f/about_data)
+*   [**Muni Simple Routes**](https://data.sfgov.org/Transportation/Muni-Simple-Routes/9exe-acju/about_data)
+
 ## 💻 Tech Stack
 *   **Geospatial & Data:** `pandas`, `geopandas`, `shapely` for vector processing natively mapped to UTM Zone 10N (`EPSG:32610`).
 *   **Analysis:** Statistical computation via `scipy.stats` (Binomial Testing / Relative Risk).
