@@ -1,34 +1,38 @@
 # SF Traffic Crashes: Victims Involved near Muni Metro Lines
 
-This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** tram public transit lines in San Francisco, California. 
+This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** tram public transit lines in San Francisco, California.
 
 By employing a geographic buffer of **50 meters** around the tram network, this analysis maps out specific incidents and runs statistical hypothesis tests (Binomial Tests) to determine if severe crashes disproportionally occur in proximity to these specific transit corridors.
 
 ## 🗺️ Interactive Web Maps
+
 The core outputs of this analysis are interactable, layer-driven Folium maps directly hosted via GitHub Pages:
 
-*   🔴 **[Fatal Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Fatal_Crashes.html)**
-*   🟠 **[Injury Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Injury_Crashes.html)**
-
-*(Note: Ensure GitHub Pages is enabled from the `main` branch to view these links!)*
+* 🔴 **[Fatal Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Fatal_Crashes.html)**
+* 🟠 **[Injury Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Injury_Crashes.html)**
 
 ## 📊 Statistical Focus & Results
+
 The objective is to accurately measure **Spatial Exposure** by computing the `m²` land area of the buffered Muni corridors versus the rest of San Francisco (121.4 sq km). Using `scipy`, a **Binomial hypothesis test** was conducted to test the observed crash volumes versus the expected crash proportions if crashes scattered completely randomly.
 
 **Methodology & Conclusion:**
-*   **The Baseline (Null Hypothesis):** If all injury/fatal crashes happened completely randomly across San Francisco's 121.4 sq km, the probability of a crash landing inside the 50m Muni line buffer would be equal to the percentage of land the buffer takes up.
-*   **The Findings:** Out of practically all datasets mapped, a massive amount of crashes happened within 50 meters of a Muni line, leading to an extremely high Relative Risk multiplier.
-*   **P-Value & Significance:** The Binomial test returns an infinitesimally small P-value (e.g., `< 0.05`), thereby giving overwhelming mathematical proof to reject the null hypothesis. Crashes are definitively highly concentrated around Muni lines rather than dispersed randomly across the city!
+
+* **The Baseline (Null Hypothesis):** If all injury/fatal crashes happened completely randomly across San Francisco's 121.4 sq km, the probability of a crash landing inside the 50m Muni line buffer would be equal to the percentage of land the buffer takes up.
+* **The Findings:** Out of practically all datasets mapped, a massive amount of crashes happened within 50 meters of a Muni line, leading to an extremely high Relative Risk multiplier.
+* **P-Value & Significance:** The Binomial test returns an infinitesimally small P-value (e.g., `< 0.05`), thereby giving overwhelming mathematical proof to reject the null hypothesis. Crashes are definitively highly concentrated around Muni lines rather than dispersed randomly across the city!
 
 👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
 
 ## 📂 Official Data Sources
+
 All datasets used in this geospatial analysis are provided by **DataSF**, the official open data portal for the City and County of San Francisco:
-*   [**Traffic Crashes Resulting in Injury**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury-Victims-Involv/nwes-mmgh/about_data) 
-*   [**Traffic Crashes Resulting in Fatality**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Fatality/dau3-4s8f/about_data)
-*   [**Muni Simple Routes**](https://data.sfgov.org/Transportation/Muni-Simple-Routes/9exe-acju/about_data)
+
+* [**Traffic Crashes Resulting in Injury**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury-Victims-Involv/nwes-mmgh/about_data)
+* [**Traffic Crashes Resulting in Fatality**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Fatality/dau3-4s8f/about_data)
+* [**Muni Simple Routes**](https://data.sfgov.org/Transportation/Muni-Simple-Routes/9exe-acju/about_data)
 
 ## 💻 Tech Stack
-*   **Geospatial & Data:** `pandas`, `geopandas`, `shapely` for vector processing natively mapped to UTM Zone 10N (`EPSG:32610`).
-*   **Analysis:** Statistical computation via `scipy.stats` (Binomial Testing / Relative Risk).
-*   **Visualization:** Interactive HTML CartoDB tiles plotted using `folium`.
+
+* **Geospatial & Data:** `pandas`, `geopandas`, `shapely` for vector processing natively mapped to UTM Zone 10N (`EPSG:32610`).
+* **Analysis:** Statistical computation via `scipy.stats` (Binomial Testing / Relative Risk).
+* **Visualization:** Interactive HTML CartoDB tiles plotted using `folium`.

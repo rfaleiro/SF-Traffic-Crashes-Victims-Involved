@@ -102,7 +102,8 @@ print(f"Relative Risk: {rr:.2f}x (95% CI: {rr_lo:.2f}–{rr_hi:.2f})")
 print()
 print(f"--- Statistical Significance ---")
 print(f"Expected crashes (if random): {total_crashes * expected_prob:.2f}")
-print(f"P-value: {test_result.pvalue:.2e}")
+p_str = "< 0.0001" if test_result.pvalue < 0.0001 else f"{test_result.pvalue:.4f}"
+print(f"P-value: {p_str}")
 if test_result.pvalue < ALPHA:
     print("Conclusion: Fatal crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.")
 else:

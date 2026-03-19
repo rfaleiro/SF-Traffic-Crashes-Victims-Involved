@@ -94,6 +94,7 @@ else:
 
 test_result = binomtest(crashes_near, total_crashes, p=expected_prob, alternative='greater')
 is_significant = "Yes" if test_result.pvalue < 0.05 else "No"
+p_str = "< 0.0001" if test_result.pvalue < 0.0001 else f"{test_result.pvalue:.4f}"
 
 print("-" * 30)
 print(f"Total Injury Crashes plotted: {total_crashes}")
@@ -101,7 +102,7 @@ print(f"Injury Crashes Near a Muni Metro (<={buffer_radius}m): {crashes_near} ({
 print(f"Density near Muni Metro: {density_near:.2f} crashes / sq km")
 print(f"Density elsewhere: {density_far:.2f} crashes / sq km")
 print(f"Relative Risk: {rr:.2f}x  (95% CI: {rr_lo:.2f}\u2013{rr_hi:.2f})")
-print(f"P-value: {test_result.pvalue:.2e}")
+print(f"P-value: {p_str}")
 print("-" * 30)
 
 print("Building Folium Map...")
@@ -149,11 +150,11 @@ legend_html = f'''
  <br>
  <b>Total Injuries Near Muni:</b> {crashes_near} ({percentage:.1f}%)<br>
  <b>Relative Risk:</b> {rr:.2f}x (95% CI: {rr_lo:.2f}\u2013{rr_hi:.2f})<br>
- <b>Statistically Significant:</b> {is_significant} (p={test_result.pvalue:.2e})<br>
+ <b>Statistically Significant:</b> {is_significant} (p={p_str})<br>
  <hr style="margin: 10px 0;">
  <b>Methodology:</b> A 50m geographic buffer was drawn around Muni Metro lines. Spatial exposure (buffer area vs. SF's 121.4 sq km total area) dictates our expected crash probabilities. A <b>Binomial Test</b> determines if observed crashes near Muni lines significantly exceed random chance.<br>
  <br>
- <b>Conclusion:</b> With a p-value of {test_result.pvalue:.2e}, we reject the null hypothesis. Injury crashes do not occur randomly; they are statically and significantly concentrated in proximity to Muni Metro routes!
+ <b>Conclusion:</b> With a p-value of {p_str}, we reject the null hypothesis. Injury crashes do not occur randomly; they are statically and significantly concentrated in proximity to Muni Metro routes!
  </div>
  '''
 m.get_root().html.add_child(folium.Element(legend_html))
