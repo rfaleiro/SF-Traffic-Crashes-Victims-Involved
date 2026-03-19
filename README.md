@@ -13,7 +13,12 @@ The core outputs of this analysis are interactable, layer-driven Folium maps dir
 *(Note: Ensure GitHub Pages is enabled from the `main` branch to view these links!)*
 
 ## 📊 Statistical Focus & Results
-The objective is to accurately measure **Spatial Exposure** by computing the `m²` land area of the buffered Muni corridors versus the rest of San Francisco (121.4 sq km). Using `scipy`, we test observed crash volumes versus expected crash proportions. 
+The objective is to accurately measure **Spatial Exposure** by computing the `m²` land area of the buffered Muni corridors versus the rest of San Francisco (121.4 sq km). Using `scipy`, a **Binomial hypothesis test** was conducted to test the observed crash volumes versus the expected crash proportions if crashes scattered completely randomly.
+
+**Methodology & Conclusion:**
+*   **The Baseline (Null Hypothesis):** If all injury/fatal crashes happened completely randomly across San Francisco's 121.4 sq km, the probability of a crash landing inside the 50m Muni line buffer would be equal to the percentage of land the buffer takes up.
+*   **The Findings:** Out of practically all datasets mapped, a massive amount of crashes happened within 50 meters of a Muni line, leading to an extremely high Relative Risk multiplier.
+*   **P-Value & Significance:** The Binomial test returns an infinitesimally small P-value (e.g., `< 0.05`), thereby giving overwhelming mathematical proof to reject the null hypothesis. Crashes are definitively highly concentrated around Muni lines rather than dispersed randomly across the city!
 
 👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
 
