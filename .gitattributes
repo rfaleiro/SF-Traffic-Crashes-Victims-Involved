@@ -1,0 +1,2 @@
+# Ignore generated folium HTML maps for GitHub repository language statistics
+*.html linguist-generated=true
