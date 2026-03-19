@@ -32,13 +32,3 @@ All datasets used in this geospatial analysis are provided by **DataSF**, the of
 *   **Geospatial & Data:** `pandas`, `geopandas`, `shapely` for vector processing natively mapped to UTM Zone 10N (`EPSG:32610`).
 *   **Analysis:** Statistical computation via `scipy.stats` (Binomial Testing / Relative Risk).
 *   **Visualization:** Interactive HTML CartoDB tiles plotted using `folium`.
-
-## 🚀 Publishing Updates
-To automatically rerun the scripts, regenerate the statistics, and push the new versions to GitHub, run the bash script:
-
-```bash
-chmod +x publish.sh
-./publish.sh
-```
-
-This ensures `output/stats_results.txt` and the interactive `.html` maps are completely up-to-date with whatever CSVs sit inside `data/raw/`!
