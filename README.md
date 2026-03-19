@@ -66,7 +66,11 @@ Conclusion                : Injury Crashes are STATISTICALLY SIGNIFICANTLY conce
 
 ## 📂 Official Data Sources
 
-All datasets used in this geospatial analysis are provided by **DataSF**, the official open data portal for the City and County of San Francisco:
+All datasets used in this geospatial analysis are provided by **DataSF**, the official open data portal for the City and County of San Francisco.
+
+### 📅 Time Span Covered:
+* **Fatal Crashes:** January 2014 — Present *(Latest record: October 2026)*
+* **Injury Crashes:** January 2024 — December 2025
 
 * [**Traffic Crashes Resulting in Injury**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury-Victims-Involv/nwes-mmgh/about_data)
 * [**Traffic Crashes Resulting in Fatality**](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Fatality/dau3-4s8f/about_data)
