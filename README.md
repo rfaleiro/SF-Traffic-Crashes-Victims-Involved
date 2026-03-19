@@ -1,0 +1,33 @@
+# SF Traffic Crashes: Victims Involved near Muni Metro Lines
+
+This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** tram public transit lines in San Francisco, California. 
+
+By employing a geographic buffer of **50 meters** around the tram network, this analysis maps out specific incidents and runs statistical hypothesis tests (Binomial Tests) to determine if severe crashes disproportionally occur in proximity to these specific transit corridors.
+
+## 🗺️ Interactive Web Maps
+The core outputs of this analysis are interactable, layer-driven Folium maps directly hosted via GitHub Pages:
+
+*   🔴 **[Fatal Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Fatal_Crashes.html)**
+*   🟠 **[Injury Crashes vs. Muni Metro Lines](https://rfaleiro.github.io/SF-Traffic-Crashes-Victims-Involved/Muni_Metro_Injury_Crashes.html)**
+
+*(Note: Ensure GitHub Pages is enabled from the `main` branch to view these links!)*
+
+## 📊 Statistical Focus & Results
+The objective is to accurately measure **Spatial Exposure** by computing the `m²` land area of the buffered Muni corridors versus the rest of San Francisco (121.4 sq km). Using `scipy`, we test observed crash volumes versus expected crash proportions. 
+
+👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
+
+## 💻 Tech Stack
+*   **Geospatial & Data:** `pandas`, `geopandas`, `shapely` for vector processing natively mapped to UTM Zone 10N (`EPSG:32610`).
+*   **Analysis:** Statistical computation via `scipy.stats` (Binomial Testing / Relative Risk).
+*   **Visualization:** Interactive HTML CartoDB tiles plotted using `folium`.
+
+## 🚀 Publishing Updates
+To automatically rerun the scripts, regenerate the statistics, and push the new versions to GitHub, run the bash script:
+
+```bash
+chmod +x publish.sh
+./publish.sh
+```
+
+This ensures `output/stats_results.txt` and the interactive `.html` maps are completely up-to-date with whatever CSVs sit inside `data/raw/`!
