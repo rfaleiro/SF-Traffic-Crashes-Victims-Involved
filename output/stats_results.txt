@@ -1,16 +1,31 @@
---- Spatial Exposure Setup ---
-SF Total Land Area: 121.40 sq km
+=========================================================
+  SPATIAL EXPOSURE SETUP
+=========================================================
+SF Total Land Area        : 121.40 sq km
 Muni Metro 50m Zone Area: 4.972 sq km
-Muni Metro Zone % of SF: 4.10%
+Muni Metro Zone % of SF   : 4.10%
 
---- Crash Densities ---
-Crashes near Muni Metro: 47 (13.39%)
-Total fatal crashes: 351
-Density near Muni Metro: 9.45 crashes / sq km
-Density elsewhere: 2.61 crashes / sq km
-Relative Risk: 3.62x (95% CI: 2.04–6.41)
+=========================================================
+  FATAL CRASHES
+=========================================================
+Total mapped crashes      : 351
+Crashes near Muni Metro   : 47 (13.39%)
+Expected crashes (random) : 14.37
+Density near Muni Metro   : 9.45 crashes / sq km
+Density elsewhere         : 2.61 crashes / sq km
+Relative Risk             : 3.62x (95% CI: 2.04–6.41)
+P-value                   : < 0.0001
+Conclusion                : Fatal Crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
 
---- Statistical Significance ---
-Expected crashes (if random): 14.37
-P-value: < 0.0001
-Conclusion: Fatal crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
+=========================================================
+  INJURY CRASHES
+=========================================================
+Total mapped crashes      : 5,914
+Crashes near Muni Metro   : 771 (13.04%)
+Expected crashes (random) : 242.19
+Density near Muni Metro   : 155.08 crashes / sq km
+Density elsewhere         : 44.17 crashes / sq km
+Relative Risk             : 3.51x (95% CI: 3.05–4.04)
+P-value                   : < 0.0001
+Conclusion                : Injury Crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
+
