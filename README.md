@@ -29,7 +29,40 @@ The objective is to accurately measure **Spatial Exposure** by computing the `m�
 | **Fatalities** | 351 | 47 *(13.39%)* | **3.62x** | 2.04 — 6.41 | `< 0.0001` | ✅ YES |
 | **Injuries** | 5,914 | 771 *(13.04%)* | **3.51x** | 3.05 — 4.04 | `< 0.0001` | ✅ YES |
 
-👉 **View the latest Statistical Output here:** [`output/stats_results.txt`](output/stats_results.txt)
+### 📝 Raw Statistical Output
+
+```text
+=========================================================
+  SPATIAL EXPOSURE SETUP
+=========================================================
+SF Total Land Area        : 121.40 sq km
+Muni Metro 50m Zone Area: 4.972 sq km
+Muni Metro Zone % of SF   : 4.10%
+
+=========================================================
+  FATAL CRASHES
+=========================================================
+Total mapped crashes      : 351
+Crashes near Muni Metro   : 47 (13.39%)
+Expected crashes (random) : 14.37
+Density near Muni Metro   : 9.45 crashes / sq km
+Density elsewhere         : 2.61 crashes / sq km
+Relative Risk             : 3.62x (95% CI: 2.04–6.41)
+P-value                   : < 0.0001
+Conclusion                : Fatal Crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
+
+=========================================================
+  INJURY CRASHES
+=========================================================
+Total mapped crashes      : 5,914
+Crashes near Muni Metro   : 771 (13.04%)
+Expected crashes (random) : 242.19
+Density near Muni Metro   : 155.08 crashes / sq km
+Density elsewhere         : 44.17 crashes / sq km
+Relative Risk             : 3.51x (95% CI: 3.05–4.04)
+P-value                   : < 0.0001
+Conclusion                : Injury Crashes are STATISTICALLY SIGNIFICANTLY concentrated near Muni Metro lines.
+```
 
 ## 📂 Official Data Sources
 
