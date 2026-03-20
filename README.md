@@ -1,4 +1,5 @@
 # SF Traffic Crashes: Victims Involved near Muni Metro Lines
+Author:@rfaleiro
 
 This project investigates the spatial relationship between traffic crashes (fatalities and injuries) and **Muni Metro** train public transit lines in San Francisco, California.
 
